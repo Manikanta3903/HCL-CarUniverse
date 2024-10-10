@@ -68,11 +68,13 @@ function applyFilters() {
     const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
     const year = document.getElementById('year').value;
     const color = document.getElementById('color').value;
+    const make = document.getElementById('make').value;
     const filteredCars = carData.filter(car => {
         return car.price >= minPrice &&
                car.price <= maxPrice &&
                (year === '' || car.year == year) &&
-               (color === '' || car.color.toLowerCase() === color.toLowerCase());
+               (color === '' || car.color.toLowerCase() === color.toLowerCase()) &&
+               (make === '' || car.make === make);
     });
 displayCars(filteredCars);
 }
