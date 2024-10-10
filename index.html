@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Universe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 href="#" class="logo">Car<span> Universe</span></h1>
+        <nav>
+            <ul>              
+                <li><a href="#" id="home-link" class="active">Home</a></li>
+                <li><a href="#" id="cars-link">Cars</a></li>
+                <li><a href="#" id="parts-link">Parts</a></li>
+                <li><a href="#" id="contact-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    </section><section class="hero-section">
+        <h2>Your One-Stop Shop for Cars</h2>
+    </section>
+    <section id="home-section" class="content-section active home-page">
+        <div class="home-content">
+            <h1 class="site-title">Car Universe</h1>
+            <p class="tagline">Find your dream car and everything you need for it.</p>
+        </div>
+    </section>
+
+    
+    <section id="cars-section" class="content-section">
+        <section class="filter-section">
+            <h3>Filter Cars</h3>
+            <label for="min-price">Min Price:</label>
+            <input type="number" id="min-price" placeholder="0">
+            <label for="max-price">Max Price:</label>
+            <input type="number" id="max-price" placeholder="100000">
+            <label for="year">Year: </label>
+            <select id="year">
+                <option value="">All</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+            </select>
+            <label for="color">Color:</label>
+            <select id="color">
+                <option value="">All</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="green">Green</option>
+            </select>
+            <button id="apply-filters">Apply Filters</button>
+        </section>
+
+    <section class="car-listing-section">
+        <h2>Cars for Sale</h2>
+        <div id="car-list" class="car-list">
+        </div>
+    </section>
+</section>
+
+    <div id="parts-section" class="content-section">
+        <h2>Car Parts</h2>
+        <div id="parts-list"></div> 
+      </div>
+
+    <div id="contact-section" class="content-section">
+        <h2>Contact Us</h2>
+        <div id="contact-details">
+          <p><strong>Phone Number:</strong> +1 234-567-890</p>
+          <p><strong>Email:</strong> <a href="mailto:contact@caruniverse.com">contact@caruniverse.com</a></p>
+          <p><strong>Instagram:</strong> <a href="https://www.instagram.com/caruniverse" target="_blank">instagram.com/caruniverse</a></p>
+          <p><strong>Facebook:</strong> <a href="https://www.facebook.com/caruniverse" target="_blank">facebook.com/caruniverse</a></p>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2024 Car Universe. All rights reserved.</p>
+    </footer>
+
+
+    <script src="main.js"></script>
+</body>
+</html>
