@@ -34,13 +34,13 @@ function displayCars(cars) {
         carPrice.className = 'price';
         carPrice.textContent = `$${car.price}`;
 
+        const carColor = document.createElement('p');
+        carColor.textContent = `Color: ${car.color}`;
+
         const buyNowButton = document.createElement('button');
         buyNowButton.textContent = 'Buy Now';
         buyNowButton.className = 'buy-now-button';
-        buyNowButton.addEventListener('click', () => buyCar(car));
-
-        const carColor = document.createElement('p');
-        carColor.textContent = `Color: ${car.color}`;
+        buyNowButton.addEventListener('click', () => showPaymentOptions(car));
 
         carItem.appendChild(carImage);
         carItem.appendChild(carTitle);
@@ -53,15 +53,43 @@ function displayCars(cars) {
     });
 }
 
-function buyCar(car) {
-    const thankYouMessage = document.createElement('p');
-    thankYouMessage.className = 'thank-you-message';
-    thankYouMessage.textContent = `Thank you for buying the ${car.make} ${car.model}! Have a great ride!`;
-    const carList = document.getElementById('car-list');
-    carList.innerHTML = ''; 
-    carList.appendChild(thankYouMessage); 
+function showPaymentOptions(car) {
+    const modal = document.getElementById('payment-modal');
+    const modalContent = document.getElementById('modal-content');
+    
+    modalContent.innerHTML = `
+        <h3>Select Payment Method</h3>
+        <p>Price: $${car.price}</p>
+        <div>
+            <input type="radio" name="payment-method" value="UPI" id="upi" checked>
+            <label for="upi">UPI</label><br>
+            <input type="radio" name="payment-method" value="Cash" id="cash">
+            <label for="cash">Cash</label><br>
+            <input type="radio" name="payment-method" value="Credit Card" id="creditcard">
+            <label for="creditcard">Credit Card</label><br>
+        </div>
+        <button onclick="confirmPurchase('${car.make}', '${car.model}')">Confirm Payment</button>
+        <button onclick="closeModal()">Cancel</button>
+    `;
+
+    modal.style.display = 'block';
 }
 
+function confirmPurchase(make, model) {
+    const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+    const thankYouMessage = `Thank you for buying the ${make} ${model}! Have a great ride!`;
+
+    document.getElementById('car-list').innerHTML = `<p class="thank-you-message">${thankYouMessage}</p>`;
+    closeModal();
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+}
+
+// Fetch the car data when the page loads
+fetchCarData();
 
 function applyFilters() {
     const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
@@ -114,7 +142,7 @@ function displayParts() {
         const buyNowButton = document.createElement('button');
         buyNowButton.textContent = 'Buy Now';
         buyNowButton.className = 'buy-now-button';
-        buyNowButton.addEventListener('click', () => buyPart(part));
+        buyNowButton.addEventListener('click', () => showPaymentOptionsForPart(part));
 
         partItem.appendChild(partImage);
         partItem.appendChild(partName);
@@ -126,14 +154,34 @@ function displayParts() {
     });
 }
 
-function buyPart(part) {
-    const thankYouMessage = document.createElement('p');
-    thankYouMessage.className = 'thank-you-message';
-    thankYouMessage.textContent = `Thank you for purchasing the ${part.name}!`;
+function showPaymentOptionsForPart(part) {
+    const modal = document.getElementById('payment-modal');
+    const modalContent = document.getElementById('modal-content');
 
-    const partsList = document.getElementById('parts-list');
-    partsList.innerHTML = '';  
-    partsList.appendChild(thankYouMessage);  
+    modalContent.innerHTML = `
+        <h3>Select Payment Method </h3>
+        <p>Price: $${part.price}</p>
+        <div>
+            <input type="radio" name="payment-method" value="UPI" id="upi" checked>
+            <label for="upi">UPI</label><br>
+            <input type="radio" name="payment-method" value="Cash" id="cash">
+            <label for="cash">Cash</label><br>
+            <input type="radio" name="payment-method" value="Credit Card" id="creditcard">
+            <label for="creditcard">Credit Card</label><br>
+        </div>
+        <button onclick="confirmPartPurchase('${part.name}')">Confirm Payment</button>
+        <button onclick="closeModal()">Cancel</button>
+    `;
+
+    modal.style.display = 'block';
+}
+
+function confirmPartPurchase(partName) {
+    const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+    const thankYouMessage = `Thank you for purchasing the ${partName}!`;
+
+    document.getElementById('parts-list').innerHTML = `<p class="thank-you-message">${thankYouMessage}</p>`;
+    closeModal();
 }
 
 function navigate(sectionId) {
