@@ -83,12 +83,12 @@ function confirmPurchase(make, model) {
     closeModal();
 }
 
-// Function to close the modal
+
 function closeModal() {
     document.getElementById('payment-modal').style.display = 'none';
 }
 
-// Fetch the car data when the page loads
+
 fetchCarData();
 
 function applyFilters() {
