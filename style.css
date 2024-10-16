@@ -97,7 +97,6 @@ nav ul li a:hover {
 .filter-section select:focus {
     border-color: #333;
 }
-
 .filter-section button {
     padding: 10px 20px;
     background-color: #333;
